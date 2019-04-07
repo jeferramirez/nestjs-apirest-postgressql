@@ -20,6 +20,15 @@ export class TareaService {
         return await this.tareaRepository.findOne( idTarea );
       }
     
+
+      async findByUser( usuario_id: number) {
+
+        try {
+          return await this.tareaRepository.find({ usuario_id });
+        } catch (err) {
+          return err;
+        }
+      }
     
       async createUser(tareaNueva: any): Promise<Tarea> {
        
@@ -27,9 +36,9 @@ export class TareaService {
     
        nuevo.descripcion = tareaNueva.descripcion;
        nuevo.fecha_creacion = tareaNueva.fecha_creacion;
+       nuevo.fecha_ejecucion = tareaNueva.fecha_ejecucion;
        nuevo.estado = tareaNueva.estado;
        nuevo.usuario_id = tareaNueva.usuario_id;
-       nuevo.fecha_ejecucion = tareaNueva.fecha_ejecucion;
     
     
        return await this.tareaRepository.save(nuevo);
@@ -38,12 +47,10 @@ export class TareaService {
       async updatedUser(tareaNueva: any) {
        
         // const nuevo = new Usuario();
-        const tareaActualizar = await this.tareaRepository.findOne(tareaNueva.id);
-    
+        const tareaActualizar = await this.tareaRepository.findOne(tareaNueva.id);  
         tareaActualizar.descripcion = tareaNueva.descripcion;
         tareaActualizar.fecha_ejecucion = tareaNueva.fecha_ejecucion;
         tareaActualizar.estado = tareaNueva.estado;
-    
         return await this.tareaRepository.save(tareaActualizar);
     
     
