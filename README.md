@@ -26,7 +26,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Api rest con postgres-sql construida con el framework nestjs
 
 ## Installation
 
